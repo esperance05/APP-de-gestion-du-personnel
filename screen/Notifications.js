@@ -1,26 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity,AntDesign, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'; 
 import { NavigationContainer } from '@react-navigation/native';
 
-
-
 const notificationsData = [
-  { id: '1', message: 'Nouvelle demande de congé de Marie ', date: '2024-09-01', icon: 'star' },
+  { id: '1', message: 'Nouvelle demande de congé de Marie', date: '2024-09-01', icon: 'star' },
   { id: '2', message: 'Rapport de performance publié', date: '2024-09-02', icon: 'copy' },
   { id: '3', message: 'Rappel : réunion d\'équipe demain à 10h', date: '2024-09-03', icon: 'alarm' },
-  { id: '4', message: 'Nouvelle demande de congé de Marie ', date: '2024-09-01', icon: 'star' },
+  { id: '4', message: 'Nouvelle demande de congé de Marie', date: '2024-09-01', icon: 'star' },
   { id: '5', message: 'Rapport de performance publié', date: '2024-09-02', icon: 'copy' },
   { id: '6', message: 'Rappel : réunion d\'équipe demain à 10h', date: '2024-09-03', icon: 'alarm' },
-  { id: '7', message: 'Nouvelle demande de congé de Marie ', date: '2024-09-01', icon: 'star' },
+  { id: '7', message: 'Nouvelle demande de congé de Marie', date: '2024-09-01', icon: 'star' },
   { id: '8', message: 'Rapport de performance publié', date: '2024-09-02', icon: 'copy' },
   { id: '9', message: 'Rappel : réunion d\'équipe demain à 10h', date: '2024-09-03', icon: 'alarm' },
 ];
 
 const NotificationItem = ({ notification }) => (
-  
   <TouchableOpacity style={styles.notificationItem}>
-  
     <Icon name={notification.icon} size={24} color="yellow" style={styles.icon} />
     <View style={styles.textContainer}>
       <Text style={styles.message}>{notification.message}</Text>
@@ -28,28 +24,30 @@ const NotificationItem = ({ notification }) => (
     </View>
   </TouchableOpacity>
 );
- const Notifications = ({ navigation }) => {
-    const handleBackPress = () => {
-      navigation.navigate(); 
-    };
+
+const Notifications = ({ navigation }) => {
+  const handleBackPress = () => {
+    navigation.navigate('home'); 
+  };
+
   return (
-   <ScrollView >
-     <View style={styles.header}>
+    <View style={styles.container}>
+      <View style={styles.header}>
         {/* Bouton de retour */}
-        <TouchableOpacity style={styles.backButton} onPress={() =>navigation.navigate ('home')}>
+        <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
           <Icon name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         {/* Titre de l'application */}
-        <Text style={styles.titleheader}>retour</Text>
+        <Text style={styles.titleheader}>Retour</Text>
       </View>
-    <View style={styles.container}>
+      
       <FlatList
         data={notificationsData}
         renderItem={({ item }) => <NotificationItem notification={item} />}
         keyExtractor={(item) => item.id}
-    />
-  </View>
-   </ScrollView>
+        contentContainerStyle={{ paddingBottom: 16 }} // Ajoute un padding en bas
+      />
+    </View>
   );
 }
 
@@ -58,6 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#f9f9f9',
+    
   },
 
   notificationItem: {
@@ -72,8 +71,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
     elevation: 2,
-    border:"bold", 
-    borderBottomColor:'#000',
   },
   icon: {
     marginRight: 12,
@@ -93,6 +90,9 @@ const styles = StyleSheet.create({
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
+  
+    marginLeft:0,
+    
   },
   backButton: {
     marginRight: 16,
@@ -101,10 +101,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    
   },
-
 });
-
 
 export default Notifications;

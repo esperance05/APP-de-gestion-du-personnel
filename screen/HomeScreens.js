@@ -15,7 +15,7 @@ const HomeScreens = () => { // Vérifiez que navigation est bien passé
   const navigation = useNavigation(); // Initialiser la navigation
 
   const next = () => {
-    navigation.navigate("connexion"); // Naviguer vers la page "profil"
+    navigation.navigate("Taches"); // Naviguer vers la page "profil"
   };
   const renderPerson = ({ item }) => (
     <View style={styles.personContainer}>
@@ -32,7 +32,7 @@ const HomeScreens = () => { // Vérifiez que navigation est bien passé
   >
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenue chez DOWHILE</Text>
-      <Text style={styles.subtitle}>directeurs  de l'entreprise</Text>
+      <Text style={styles.subtitle}>présentation de l'entrepise</Text>
       <FlatList
         data={director}
         renderItem={renderPerson}
@@ -41,8 +41,8 @@ const HomeScreens = () => { // Vérifiez que navigation est bien passé
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.flatListContainer}
       />
-      <TouchableOpacity onPress={next} style={{position:"absolute",bottom:10,paddingHorizontal:90,paddingVertical:20,backgroundColor:"#0288d1",borderRadius:20,flexDirection:"row",gap:10,alignItems:"center"}}  > 
-       <Text style={{color:"white",fontSize:20}}>se connecter</Text>
+      <TouchableOpacity onPress={next} style={{position:'absolute',bottom:40,paddingHorizontal:90,paddingVertical:20,backgroundColor:"#0288d1",borderRadius:20,flexDirection:"row",gap:10,alignItems:"center"}}  > 
+       <Text style={{color:"white",fontSize:20}}>Taches</Text>
     </TouchableOpacity>
     </View>
   </ImageBackground>

@@ -18,6 +18,9 @@ import Messagerie from './screen/Messagerie';
 import Entypo from '@expo/vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Discussion from './screen/Discussion';
+import Heures from './screen/Heures';
+import Details from './screen/Details';
+  
 const Tab = createBottomTabNavigator();
 const stack = createNativeStackNavigator(); 
 
@@ -122,7 +125,7 @@ export default function App ()  {
   return (
    <NavigationContainer>
       <stack.Navigator 
-        screenOptions={{tabBarStyle:{bacgroundColor:'#0CAD62',borderTopColor:'#fff'},tabBarActiveTintColor:'black',tabBarActiveBackgroundColor:'#0288d1',tabBarInactiveTintColor:'#fff',intialRouteName:'Taches'}} >
+        screenOptions={{tabBarStyle:{bacgroundColor:'#0CAD62',borderTopColor:'#fff'},tabBarActiveTintColor:'black',tabBarActiveBackgroundColor:'#0288d1',tabBarInactiveTintColor:'#fff',intialRouteName:'Details'}} >
           
         <stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
         <stack.Screen name='homes'component={Home} options={()=> ({tabBarStyle:{display:'none'},tabBarButton:()=>null,headerShown:false })} />
@@ -138,6 +141,8 @@ export default function App ()  {
           <stack.Screen name='Fiche_paie' component={Fiche_Paie}  options={() => ({tabBarStyle:{display:'none'}, tabBarButton:() => null, headerShown:true})} />
           <stack.Screen name='Messagerie' component={Messagerie} options={{ headerShown:true,headerStyle:{ bacgroundColor:"#0288d1"}, tabBarIcon:({size,Colors})=>(<AntDesign  name= 'time'size={size} color={Colors} />)}}/>
           <stack.Screen name='Discussion' component={Discussion} options={{ headerShown:true,headerStyle:{ bacgroundColor:"#0288d1"}, tabBarIcon:({size,Colors})=>(<AntDesign  name= 'time'size={size} color={Colors} />)}}/>
+          <stack.Screen name='Heures' component={Heures} options={{ headerShown:true,headerStyle:{ bacgroundColor:"#0288d1"}, tabBarIcon:({size,Colors})=>(<AntDesign  name= 'time'size={size} color={Colors} />)}}/>
+          <stack.Screen name='DetailsTaches' component={Details} options={{ headerShown:true,headerStyle:{ bacgroundColor:"#0288d1"}, tabBarIcon:({size,Colors})=>(<AntDesign  name= 'time'size={size} color={Colors} />)}}/>
 
 
  

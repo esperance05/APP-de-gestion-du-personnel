@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Taches from './Taches'; // Chemin vers votre composant Taches
 
 const Messagerie = ({ navigation }) => {
   // État pour stocker la requête de recherche
   const [searchQuery, setSearchQuery] = useState('');
-  // État pour stocker l'utilisateur sélectionné
-  const [selectedUser, setSelectedUser] = useState(null);
 
-  // Données des utilisateurs
+  // Données des utilisateurs avec des identifiants basés sur les premières lettres des noms
   const users = [
-    { id: 'E', name: 'esperance', color: 'red', message: 'bonjour ,brsoin de quelques info stp.' },
-    { id: 'Y', name: 'yonkeu', color: 'yellow', message: ' voici les etapes a suivres ...' },
-    { id: 'T', name: ' tchamba', color: 'orange', message: ' non voici sur quoi vous devez vous attarder' },
-    { id: 'T', name: 'TySp', color: 'red', message: 'soyez plus explicte' },
-    { id: 'E', name: 'esperance', color: 'red', message: 'bonjour ,brsoin de quelques info stp.' },
-    { id: 'Y', name: 'yonkeu', color: 'yellow', message: ' voici les etapes a suivres ...' },
-    { id: 'T', name: ' tchamba', color: 'orange', message: ' non voici sur quoi vous devez vous attarder' },
-    { id: 'T', name: 'TySp', color: 'red', message: 'soyez plus explicte' },
+    { id: 'e', name: 'esperance', color: 'red', message: 'bonjour, besoin de quelques infos stp.' },
+    { id: 'y', name: 'yonkeu', color: 'yellow', message: 'voici les étapes à suivre ...' },
+    { id: 't', name: 'tchamba', color: 'orange', message: 'non, voici sur quoi vous devez vous attarder' },
+    { id: 't2', name: 'TySp', color: 'red', message: 'soyez plus explicite' },
+    { id: 'e2', name: 'esperance', color: 'red', message: 'bonjour, besoin de quelques infos stp.' },
+    { id: 'y2', name: 'yonkeu', color: 'yellow', message: 'voici les étapes à suivre ...' },
+    { id: 't3', name: 'tchamba', color: 'orange', message: 'non, voici sur quoi vous devez vous attarder' },
+    { id: 't4', name: 'TySp', color: 'red', message: 'soyez plus explicite' },
   ];
-
-  // Fonction appelée lorsqu'un utilisateur est sélectionné
-  const handleUserSelect = (user) => {
-    setSelectedUser(user);
-  };
 
   // Fonction appelée lorsque la requête de recherche change
   const handleSearchChange = (text) => {
@@ -43,8 +34,8 @@ const Messagerie = ({ navigation }) => {
       {/* En-tête de l'application */}
       <View style={styles.header}>
         {/* Bouton de retour */}
-        <TouchableOpacity style={styles.backButton} onPress={() =>navigation.navigate ('home')}>
-            <Icon name="arrow-back" size={24} color="white" />
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('home')}>
+          <Icon name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         {/* Titre de l'application */}
         <Text style={styles.title}>Messagerie</Text>
@@ -66,14 +57,13 @@ const Messagerie = ({ navigation }) => {
       <ScrollView style={styles.userList}>
         {filteredUsers.map((user) => (
           <TouchableOpacity
-            key={user.id}
+            key={user.id} // Utilisation des premières lettres comme identifiant
             style={styles.userItem}
             onPress={() => navigation.navigate('Discussion')}
           >
             <View style={styles.userAvatar}>
-              <Text style={styles.userAvatarText}>{user.id}</Text>
+              <Text style={styles.userAvatarText}>{user.id.toUpperCase()}</Text>
             </View>
-                                             
             <View style={styles.userInfo}>
               <Text style={styles.userName}>{user.name}</Text>
               <Text style={styles.userMessage}>{user.message.substring(0, 30)}...</Text>
@@ -81,7 +71,6 @@ const Messagerie = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
-
     </View>
   );
 };
@@ -104,43 +93,24 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
     backgroundColor: 'white',
-    borderColor:'#000',
+    borderColor: '#000',
   },
   searchInput: {
     flex: 1,
     height: 40,
     borderWidth: 1,
-    borderColor: '#000 ',
+    borderColor: '#000',
     padding: 10,
     marginRight: 10,
   },
   searchIcon: {
     color: '#000',
-  },
-  onlineText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    padding: 16,
-  },
-  userContainer: {
-    padding: 16,
-  },
-  userButton: {
-    padding: 10,
-    borderRadius: 20,
-    marginRight: 10,
-    alignItems: 'center',
-  },
-  userText: {
-    color: 'white',
-    fontWeight: 'bold',
   },
   userList: {
     padding: 16,
@@ -181,28 +151,6 @@ const styles = StyleSheet.create({
   userMessage: {
     fontSize: 14,
     color: 'gray',
-  },
-  selectedUserContainer: {
-    padding: 16,
-    backgroundColor: 'white',
-  },
-  selectedUserName: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  selectedUserMessage: {
-    fontSize: 16,
-  },
-  actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 16,
-    backgroundColor: 'white',
-  },
-  actionButton: {
-    padding: 10,
-    borderRadius: 20,
   },
 });
 
